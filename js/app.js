@@ -36,12 +36,16 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
- // add click event to card
-cardsDeck.addEventListener('click', function(evt){
+
+//function to open card and show symbol
+function openCard(evt) {
+  
   if (evt.target.nodeName.toLowerCase() === 'li') {
     evt.target.classList.toggle('open');
     evt.target.classList.toggle('show');
   }
+}
 
 
-});
+ // add click event to card
+cardsDeck.addEventListener('click', openCard);
