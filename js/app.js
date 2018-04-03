@@ -3,6 +3,10 @@
  */
 const cardsDeck = document.querySelector('.deck');
 const card = document.getElementsByClassName('card');
+
+// list to hold 2 open cards to compare them
+let openCardValue = [];
+let openCardList = [];
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -39,13 +43,39 @@ function shuffle(array) {
 
 //function to open card and show symbol
 function openCard(evt) {
-  
+
   if (evt.target.nodeName.toLowerCase() === 'li') {
     evt.target.classList.toggle('open');
     evt.target.classList.toggle('show');
+    const card = evt.target;
+    addOpenCards(card);
+    // console.log(evt.target);
+    // console.log(openCardList);
   }
 }
 
+
+// function to add open card to list
+function addOpenCards(card) {
+  // get and save 2 card values to compare them
+  const cardValue = card.lastElementChild.firstElementChild.className;
+
+  // check if no of cards in the list and push cards if openCardList.length <= 1
+  if (openCardList.length <= 1) {
+    openCardValue.push(cardValue);
+    openCardList.push(card);
+
+    // check if there are 2 cards in openCardList and compare their values
+    if (openCardList.length === 2 && (openCardValue[0] === openCardValue[1])) {
+      console.log(openCardValue[0] + " " + openCardValue[1]);
+      cardsMatched(openCardList[0], openCardList[1]);
+    }
+
+  } else {
+    openCardList.shift();
+  }
+  console.log(openCardList.length + ' inside addCard function');
+}
 
  // add click event to card
 cardsDeck.addEventListener('click', openCard);
