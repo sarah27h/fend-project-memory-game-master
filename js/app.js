@@ -47,7 +47,7 @@ function openCard(evt) {
   if (evt.target.nodeName.toLowerCase() === 'li') {
 
     // check if card is opended to fix second click problem
-    //prevent opened card and match card to be clicked
+    //prevent opened card and match card to be clicked second time
     if (!(evt.target.classList.contains('open'))  && !(evt.target.classList.contains('match'))) {
       evt.target.classList.add('open', 'show');
       const card = evt.target;
@@ -91,6 +91,16 @@ function cardsMatched(card1, card2) {
   card1.classList.add('match');
   card2.classList.remove('open', 'show');
   card2.classList.add('match');
+}
+
+
+// function cardsNotMatched remove 2 cards from openCardList
+function cardsNotMatched(card1, card2) {
+  console.log("inside NotMatched fun")
+  card1.classList.remove('show');
+  card1.classList.remove('open');
+  card2.classList.remove('show');
+  card2.classList.remove('open');
 }
 
 
