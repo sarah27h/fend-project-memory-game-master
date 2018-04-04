@@ -45,10 +45,13 @@ function shuffle(array) {
 function openCard(evt) {
 
   if (evt.target.nodeName.toLowerCase() === 'li') {
-    evt.target.classList.toggle('open');
-    evt.target.classList.toggle('show');
-    const card = evt.target;
-    addOpenCards(card);
+
+    // check if card is opended to fix second click problem
+    if (!(evt.target.classList.contains('open'))) {
+      evt.target.classList.add('open', 'show');
+      const card = evt.target;
+      addOpenCards(card);
+    }
     // console.log(evt.target);
     // console.log(openCardList);
   }
@@ -68,7 +71,7 @@ function addOpenCards(card) {
     // check if there are 2 cards in openCardList and compare their values
     if (openCardList.length === 2 && (openCardValue[0] === openCardValue[1])) {
       console.log(openCardValue[0] + " " + openCardValue[1]);
-      cardsMatched(openCardList[0], openCardList[1]);
+      // cardsMatched(openCardList[0], openCardList[1]);
     }
 
   } else {
@@ -76,6 +79,7 @@ function addOpenCards(card) {
   }
   console.log(openCardList.length + ' inside addCard function');
 }
+
 
  // add click event to card
 cardsDeck.addEventListener('click', openCard);
