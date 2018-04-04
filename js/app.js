@@ -4,6 +4,10 @@
 const cardsDeck = document.querySelector('.deck');
 const card = document.getElementsByClassName('card');
 
+// moveConuter variable to calculate player moves
+let moveConuter = Number(document.querySelector('.moves').innerHTML);
+console.log(moveConuter);
+
 // list to hold 2 open cards to compare them
 let openCardValue = [];
 let openCardList = [];
@@ -73,12 +77,19 @@ function addOpenCards(card) {
     if (openCardList.length === 2 && (openCardValue[0] === openCardValue[1])) {
       console.log(openCardValue[0] + " " + openCardValue[1]);
       cardsMatched(openCardList[0], openCardList[1]);
+      countPlayerMoves();
+      console.log(moveConuter);
+
+      // remove cards and its values from openCardList
       openCardList.length = 0;
       openCardValue.length = 0;
     } else if (openCardList.length === 2 && (openCardValue[0] !== openCardValue[1])) {
       console.log(openCardValue[0] + " " + openCardValue[1]);
       cardsNotMatched(openCardList[0], openCardList[1]);
-      cardsNotMatched(openCardList[0], openCardList[1]);
+      countPlayerMoves();
+      console.log(moveConuter);
+
+      // remove cards and its values from openCardList
       openCardList.length = 0;
       openCardValue.length = 0;
     }
@@ -101,6 +112,14 @@ function cardsNotMatched(card1, card2) {
   card1.classList.remove('open');
   card2.classList.remove('show');
   card2.classList.remove('open');
+}
+
+
+// function to to calculate player moves
+function countPlayerMoves() {
+  moveConuter ++;
+  document.querySelector('.moves').innerHTML = moveConuter;
+  console.log(moveConuter);
 }
 
 
