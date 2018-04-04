@@ -77,7 +77,7 @@ function addOpenCards(card) {
       openCardValue.length = 0;
     } else if (openCardList.length === 2 && (openCardValue[0] !== openCardValue[1])) {
       console.log(openCardValue[0] + " " + openCardValue[1]);
-      // cardsNotMatched(openCardList[0], openCardList[1]);
+      cardsNotMatched(openCardList[0], openCardList[1]);
       cardsNotMatched(openCardList[0], openCardList[1]);
       openCardList.length = 0;
       openCardValue.length = 0;
@@ -94,7 +94,7 @@ function cardsMatched(card1, card2) {
 }
 
 
-// function cardsNotMatched remove 2 cards from openCardList
+// function cardsNotMatched hide card symbol and remove 2 cards from openCardList
 function cardsNotMatched(card1, card2) {
   console.log("inside NotMatched fun")
   card1.classList.remove('show');
