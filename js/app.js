@@ -71,13 +71,22 @@ function addOpenCards(card) {
     // check if there are 2 cards in openCardList and compare their values
     if (openCardList.length === 2 && (openCardValue[0] === openCardValue[1])) {
       console.log(openCardValue[0] + " " + openCardValue[1]);
-      // cardsMatched(openCardList[0], openCardList[1]);
+      cardsMatched(openCardList[0], openCardList[1]);
     }
 
   } else {
     openCardList.shift();
   }
   console.log(openCardList.length + ' inside addCard function');
+}
+
+
+// function cardMatched add class match to 2 matched cards
+function cardsMatched(card1, card2) {
+  card1.classList.remove('open', 'show');
+  card1.classList.add('match');
+  card2.classList.remove('open', 'show');
+  card2.classList.add('match');
 }
 
 
