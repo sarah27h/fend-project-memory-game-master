@@ -47,7 +47,8 @@ function openCard(evt) {
   if (evt.target.nodeName.toLowerCase() === 'li') {
 
     // check if card is opended to fix second click problem
-    if (!(evt.target.classList.contains('open'))) {
+    //prevent opened card and match card to be clicked
+    if (!(evt.target.classList.contains('open'))  && !(evt.target.classList.contains('match'))) {
       evt.target.classList.add('open', 'show');
       const card = evt.target;
       addOpenCards(card);
@@ -67,19 +68,22 @@ function addOpenCards(card) {
   if (openCardList.length <= 1) {
     openCardValue.push(cardValue);
     openCardList.push(card);
-
+    console.log(openCardList.length + ' inside addCard function');
     // check if there are 2 cards in openCardList and compare their values
     if (openCardList.length === 2 && (openCardValue[0] === openCardValue[1])) {
       console.log(openCardValue[0] + " " + openCardValue[1]);
       cardsMatched(openCardList[0], openCardList[1]);
+      openCardList.length = 0;
+      openCardValue.length = 0;
+    } else if (openCardList.length === 2 && (openCardValue[0] !== openCardValue[1])) {
+      console.log(openCardValue[0] + " " + openCardValue[1]);
+      // cardsNotMatched(openCardList[0], openCardList[1]);
+      cardsNotMatched(openCardList[0], openCardList[1]);
+      openCardList.length = 0;
+      openCardValue.length = 0;
     }
-
-  } else {
-    openCardList.shift();
   }
-  console.log(openCardList.length + ' inside addCard function');
 }
-
 
 // function cardMatched add class match to 2 matched cards
 function cardsMatched(card1, card2) {
