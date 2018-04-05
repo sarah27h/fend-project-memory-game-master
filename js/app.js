@@ -13,8 +13,10 @@ const restartBtn = document.querySelector('.restart');
 // moveConuter variable to calculate player moves
 let moveConuter = document.querySelector('.moves');
 
-
 const starRating = document.querySelector('.stars');
+
+let timer;
+let clickCount = 0;
 
 // list to hold 2 open cards to compare them
 let openCardValue = [];
@@ -67,6 +69,19 @@ function openCard(evt) {
       const card = evt.target;
       addOpenCards(card);
     }
+
+    // counter to track first click to start timer
+    clickCount ++;
+    if (clickCount === 1) {
+      timer = new Timer();
+      timer.start({precision: 'seconds'});
+      timer.addEventListener('secondsUpdated', function (e) {
+          $('#timeRecord .minutes').html(timer.getTimeValues().minutes);
+          $('#timeRecord .seconds').html(timer.getTimeValues().seconds);
+      });
+
+    }
+    console.log('clickCount ', clickCount);
     // console.log(evt.target);
     // console.log(openCardList);
   }
@@ -82,13 +97,14 @@ function addOpenCards(card) {
   if (openCardList.length <= 1) {
     openCardValue.push(cardValue);
     openCardList.push(card);
+
     console.log(openCardList.length + ' inside addCard function');
     // check if there are 2 cards in openCardList and compare their values
     if (openCardList.length === 2 && (openCardValue[0] === openCardValue[1])) {
       console.log(openCardValue[0] + " " + openCardValue[1] + '.....' + openCardList[0]);
       cardsMatched(openCardList[0], openCardList[1]);
       countPlayerMoves();
-      updateStar()
+      updateStar();
       console.log(conuter);
 
       // remove cards and its values from openCardList
@@ -98,7 +114,7 @@ function addOpenCards(card) {
       console.log(openCardValue[0] + " " + openCardValue[1]);
       cardsNotMatched(openCardList[0], openCardList[1]);
       countPlayerMoves();
-      updateStar()
+      updateStar();
       console.log(conuter);
 
       // remove cards and its values from openCardList
@@ -153,7 +169,7 @@ cardsDeck.addEventListener('click', openCard);
 // add click event to restartBtn to restart game
 restartBtn.addEventListener('click', function(){
 
-  // reset game board (flip cards down, clear moveConuter, star rating)
+  // reset game board (flip cards down, clear moveConuter, star rating, timer)
   for (let i = 0; i < cards.length; i++) {
     cards[i].classList.remove('open', 'show', 'match');
     console.log(cards[i]);
@@ -166,5 +182,10 @@ restartBtn.addEventListener('click', function(){
   for (let i = 0; i < starchildren.length; i++) {
     starchildren[i].style.cssText = 'visibility: visible';
   }
+
+    timer.reset();
+    timer.stop();
+    document.querySelector('.seconds').innerHTML = '0';
+    console.log('seconds ', document.querySelector('.seconds').innerHTML);
 
 });

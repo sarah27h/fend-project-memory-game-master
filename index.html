@@ -24,6 +24,11 @@
 
         	<span class="moves">0</span> Moves
 
+          <div id="timeRecord">
+              <span class="minutes">0</span><span> : </span>
+              <span class="seconds">0</span>
+          </div>
+
             <div class="restart">
         		<i class="fa fa-repeat"></i>
         	</div>
@@ -146,5 +151,10 @@
     </div>
 
     <script src="js/app.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/easytimer.min.js"></script>
+    <script>
+        var timerInstance = new Timer();
+    </script>
 </body>
 </html>
