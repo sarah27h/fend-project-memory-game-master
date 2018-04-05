@@ -134,5 +134,15 @@ function countPlayerMoves() {
 }
 
 
+// function to update star rating based on player Moves
+function updateStar() {
+  if ((moveConuter.innerHTML) === '15') {
+    starRating.children[0].style.cssText = 'visibility: hidden';
+  } else if ((moveConuter.innerHTML) === '30') {
+    starRating.children[1].style.cssText = 'visibility: hidden';
+  }
+}
+
+
  // add click event to card
 cardsDeck.addEventListener('click', openCard);
