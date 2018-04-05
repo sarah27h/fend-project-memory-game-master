@@ -88,6 +88,7 @@ function addOpenCards(card) {
       console.log(openCardValue[0] + " " + openCardValue[1] + '.....' + openCardList[0]);
       cardsMatched(openCardList[0], openCardList[1]);
       countPlayerMoves();
+      updateStar()
       console.log(conuter);
 
       // remove cards and its values from openCardList
@@ -97,6 +98,7 @@ function addOpenCards(card) {
       console.log(openCardValue[0] + " " + openCardValue[1]);
       cardsNotMatched(openCardList[0], openCardList[1]);
       countPlayerMoves();
+      updateStar()
       console.log(conuter);
 
       // remove cards and its values from openCardList
@@ -146,3 +148,23 @@ function updateStar() {
 
  // add click event to card
 cardsDeck.addEventListener('click', openCard);
+
+
+// add click event to restartBtn to restart game
+restartBtn.addEventListener('click', function(){
+
+  // reset game board (flip cards down, clear moveConuter, star rating)
+  for (let i = 0; i < cards.length; i++) {
+    cards[i].classList.remove('open', 'show', 'match');
+    console.log(cards[i]);
+  }
+
+  moveConuter.innerHTML = '0';
+  console.log("I press restartBtn", starRating.children);
+
+  const starchildren = starRating.children;
+  for (let i = 0; i < starchildren.length; i++) {
+    starchildren[i].style.cssText = 'visibility: visible';
+  }
+
+});
