@@ -2,15 +2,25 @@
  * Create a list that holds all of your cards
  */
 const cardsDeck = document.querySelector('.deck');
-const card = document.getElementsByClassName('card');
+// const cards = cardsDeck.children;
+// console.log(cards);
+
+const cards = document.querySelectorAll('.card');
+console.log(cards);
+
+const restartBtn = document.querySelector('.restart');
 
 // moveConuter variable to calculate player moves
-let moveConuter = Number(document.querySelector('.moves').innerHTML);
-console.log(moveConuter);
+let moveConuter = document.querySelector('.moves');
+
+
+const starRating = document.querySelector('.stars');
 
 // list to hold 2 open cards to compare them
 let openCardValue = [];
 let openCardList = [];
+
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -75,10 +85,10 @@ function addOpenCards(card) {
     console.log(openCardList.length + ' inside addCard function');
     // check if there are 2 cards in openCardList and compare their values
     if (openCardList.length === 2 && (openCardValue[0] === openCardValue[1])) {
-      console.log(openCardValue[0] + " " + openCardValue[1]);
+      console.log(openCardValue[0] + " " + openCardValue[1] + '.....' + openCardList[0]);
       cardsMatched(openCardList[0], openCardList[1]);
       countPlayerMoves();
-      console.log(moveConuter);
+      console.log(conuter);
 
       // remove cards and its values from openCardList
       openCardList.length = 0;
@@ -87,7 +97,7 @@ function addOpenCards(card) {
       console.log(openCardValue[0] + " " + openCardValue[1]);
       cardsNotMatched(openCardList[0], openCardList[1]);
       countPlayerMoves();
-      console.log(moveConuter);
+      console.log(conuter);
 
       // remove cards and its values from openCardList
       openCardList.length = 0;
@@ -115,11 +125,12 @@ function cardsNotMatched(card1, card2) {
 }
 
 
-// function to to calculate player moves
+// function to to count player moves
 function countPlayerMoves() {
-  moveConuter ++;
-  document.querySelector('.moves').innerHTML = moveConuter;
-  console.log(moveConuter);
+  conuter = Number(moveConuter.innerHTML);
+  conuter ++;
+  moveConuter.innerHTML = conuter;
+  console.log('moves ' ,moveConuter.innerHTML);
 }
 
 
