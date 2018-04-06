@@ -16,6 +16,8 @@ let moveConuter = document.querySelector('.moves');
 const starRating = document.querySelector('.stars');
 
 let timer;
+
+// variable to keep track of player clicks
 let clickCount = 0;
 
 // list to hold 2 open cards to compare them
@@ -196,7 +198,7 @@ cardsDeck.addEventListener('click', openCard);
 // add click event to restartBtn to restart game
 restartBtn.addEventListener('click', function(){
 
-  // reset game board (flip cards down, clear moveConuter, star rating, timer)
+  // reset game board (flip cards down, clear moveConuter, star rating, timer, clickCount, match)
   for (let i = 0; i < cards.length; i++) {
     cards[i].classList.remove('open', 'show', 'match');
     console.log(cards[i]);
@@ -212,9 +214,12 @@ restartBtn.addEventListener('click', function(){
 
     timer.reset();
     timer.stop();
+    document.querySelector('.minutes').innerHTML = '0';
     document.querySelector('.seconds').innerHTML = '0';
     console.log('seconds ', document.querySelector('.seconds').innerHTML);
 
+    clickCount = 0;
+    match = 0;
 });
 
 
