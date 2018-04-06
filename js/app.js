@@ -9,6 +9,7 @@ const cards = document.querySelectorAll('.card');
 console.log(cards);
 
 const restartBtn = document.querySelector('.restart');
+const replayBtn = document.querySelector('.replayBtn');
 
 // moveConuter variable to calculate player moves
 let moveConuter = document.querySelector('.moves');
@@ -33,6 +34,7 @@ const modal = document.getElementById('conModal');
 // closes the modal
 const closeIcon = document.querySelector(".close");
 
+let starNum = 3;
 
 
 /*
@@ -120,6 +122,13 @@ function addOpenCards(card) {
 
       countPlayerMoves();
       updateStar();
+
+      // to keep track of matched cards
+      match ++;
+      if (match === 8) {
+        winModel();
+      }
+
       console.log(conuter);
 
       // remove cards and its values from openCardList
@@ -145,12 +154,6 @@ function cardsMatched(card1, card2) {
   card1.classList.add('match');
   card2.classList.remove('open', 'show');
   card2.classList.add('match');
-
-  // to keep track of matched cards
-  match ++;
-  if (match === 8) {
-    winModel();
-  }
 }
 
 
@@ -176,8 +179,10 @@ function countPlayerMoves() {
 // function to update star rating based on player Moves
 function updateStar() {
   if ((moveConuter.innerHTML) === '15') {
+    starNum = 2;
     starRating.children[0].style.cssText = 'visibility: hidden';
   } else if ((moveConuter.innerHTML) === '30') {
+    starNum = 1;
     starRating.children[1].style.cssText = 'visibility: hidden';
   }
 }
@@ -187,17 +192,20 @@ function updateStar() {
 function winModel() {
   console.log('congratulate  you win :)');
   // When the user clicks the button, open the modal
+  timer.stop();
+
   modal.style.cssText = 'display: block';
+
+  // get player data to display on win winModel
+  const finalMoves = document.querySelector('.final-moves');
+  finalMoves.innerHTML = moveConuter.innerHTML;
+  const finalStars = document.querySelector('.final-stars');
+  finalStars.innerHTML =  starNum.toString();
 }
 
 
- // add click event to card
-cardsDeck.addEventListener('click', openCard);
-
-
-// add click event to restartBtn to restart game
-restartBtn.addEventListener('click', function(){
-
+// function restartGame() to restart the game
+function restartGame (){
   // reset game board (flip cards down, clear moveConuter, star rating, timer, clickCount, match)
   for (let i = 0; i < cards.length; i++) {
     cards[i].classList.remove('open', 'show', 'match');
@@ -220,6 +228,22 @@ restartBtn.addEventListener('click', function(){
 
     clickCount = 0;
     match = 0;
+}
+
+
+ // add click event to card
+cardsDeck.addEventListener('click', openCard);
+
+
+// add click event to restartBtn to restart game
+restartBtn.addEventListener('click', restartGame);
+
+
+// add click event to restartBtn to restart game
+// and begin a new game
+replayBtn.addEventListener('click', function() {
+    modal.style.cssText = 'display: none';
+    restartGame();
 });
 
 
