@@ -52,9 +52,9 @@ function shuffle(array) {
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
+        temporaryValue = array[currentIndex].lastElementChild.firstElementChild.className;
+        array[currentIndex].lastElementChild.firstElementChild.className = array[randomIndex].lastElementChild.firstElementChild.className;
+        array[randomIndex].lastElementChild.firstElementChild.className = temporaryValue;
     }
 
     return array;
