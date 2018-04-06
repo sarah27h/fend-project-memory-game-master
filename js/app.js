@@ -22,6 +22,16 @@ let clickCount = 0;
 let openCardValue = [];
 let openCardList = [];
 
+// variable to keep track of num of matched cards
+let match = 0;
+
+// modal box
+const modal = document.getElementById('conModal');
+
+// closes the modal
+const closeIcon = document.querySelector(".close");
+
+
 
 /*
  * Display the cards on the page
@@ -71,6 +81,7 @@ function openCard(evt) {
     }
 
     // counter to track first click to start timer
+    // easytimer library from https://albert-gonzalez.github.io/easytimer.js/
     clickCount ++;
     if (clickCount === 1) {
       timer = new Timer();
@@ -85,6 +96,7 @@ function openCard(evt) {
     // console.log(evt.target);
     // console.log(openCardList);
   }
+
 }
 
 
@@ -103,6 +115,7 @@ function addOpenCards(card) {
     if (openCardList.length === 2 && (openCardValue[0] === openCardValue[1])) {
       console.log(openCardValue[0] + " " + openCardValue[1] + '.....' + openCardList[0]);
       cardsMatched(openCardList[0], openCardList[1]);
+
       countPlayerMoves();
       updateStar();
       console.log(conuter);
@@ -130,6 +143,12 @@ function cardsMatched(card1, card2) {
   card1.classList.add('match');
   card2.classList.remove('open', 'show');
   card2.classList.add('match');
+
+  // to keep track of matched cards
+  match ++;
+  if (match === 8) {
+    winModel();
+  }
 }
 
 
@@ -162,6 +181,14 @@ function updateStar() {
 }
 
 
+// function to show Congratulations Popup model when a user wins the game
+function winModel() {
+  console.log('congratulate  you win :)');
+  // When the user clicks the button, open the modal
+  modal.style.cssText = 'display: block';
+}
+
+
  // add click event to card
 cardsDeck.addEventListener('click', openCard);
 
@@ -188,4 +215,18 @@ restartBtn.addEventListener('click', function(){
     document.querySelector('.seconds').innerHTML = '0';
     console.log('seconds ', document.querySelector('.seconds').innerHTML);
 
+});
+
+
+// add click event to icon to close the modal
+closeIcon.addEventListener('click', function() {
+    modal.style.cssText = 'display: none';
+});
+
+
+// add click event to window any click outside of the modal close it
+window.addEventListener('click', function(evt) {
+    if (evt.target == modal) {
+        modal.style.cssText = 'display: none';
+    }
 });
