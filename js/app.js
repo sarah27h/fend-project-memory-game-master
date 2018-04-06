@@ -3,10 +3,11 @@
  */
 const cardsDeck = document.querySelector('.deck');
 // const cards = cardsDeck.children;
-// console.log(cards);
+console.log(cardsDeck);
 
 const cards = document.querySelectorAll('.card');
 console.log(cards);
+console.log(cards[0].lastElementChild.firstElementChild.className);
 
 const restartBtn = document.querySelector('.restart');
 const replayBtn = document.querySelector('.replayBtn');
@@ -79,6 +80,7 @@ function openCard(evt) {
     // check if card is opended to fix second click problem
     //prevent opened card and match card to be clicked second time
     if (!(evt.target.classList.contains('open'))  && !(evt.target.classList.contains('match'))) {
+
       evt.target.classList.add('open', 'show');
       const card = evt.target;
       addOpenCards(card);
@@ -119,7 +121,6 @@ function addOpenCards(card) {
     if (openCardList.length === 2 && (openCardValue[0] === openCardValue[1])) {
       console.log(openCardValue[0] + " " + openCardValue[1] + '.....' + openCardList[0]);
       cardsMatched(openCardList[0], openCardList[1]);
-
       countPlayerMoves();
       updateStar();
 
@@ -154,16 +155,36 @@ function cardsMatched(card1, card2) {
   card1.classList.add('match');
   card2.classList.remove('open', 'show');
   card2.classList.add('match');
+
+  // adding shaking effect
+  card2.classList.add('shake-little');
+  card1.classList.add('shake-little');
 }
 
 
 // function cardsNotMatched hide card symbol and remove 2 cards from openCardList
 function cardsNotMatched(card1, card2) {
   console.log("inside NotMatched fun")
-  card1.classList.remove('show');
-  card1.classList.remove('open');
-  card2.classList.remove('show');
-  card2.classList.remove('open');
+
+  setTimeout(function(){
+    card1.classList.remove('show');
+    card1.classList.remove('open');
+    card2.classList.remove('show');
+    card2.classList.remove('open');
+    card2.classList.add('notmatch');
+    card1.classList.add('notmatch');
+
+  }, 1000);
+
+  // adding shaking effect
+  card2.classList.add('shake-hard', 'notmatch');
+  card1.classList.add('shake-hard', 'notmatch');
+
+  // delay remove shaking effect
+  setTimeout(function(){
+    card2.classList.remove('shake-hard', 'notmatch');
+    card1.classList.remove('shake-hard', 'notmatch');
+  }, 1000);
 }
 
 
@@ -244,6 +265,8 @@ restartBtn.addEventListener('click', restartGame);
 replayBtn.addEventListener('click', function() {
     modal.style.cssText = 'display: none';
     restartGame();
+    shuffle(cards);
+    console.log(cards);
 });
 
 
