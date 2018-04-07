@@ -252,4 +252,24 @@ h1 {
        height: 66px;
        width: 66px;
    }
+
+}
+
+/* for width less than 319px*/
+@media screen and (max-width: 319px) {
+
+   .deck {
+       width: 100%;
+       height: 519px;
+       padding: 5px;
+   }
+
+   .deck .card {
+       height: 55px;
+       width: 48%;
+   }
+   .score-panel {
+       width: 68px;
+   }
+
 }
