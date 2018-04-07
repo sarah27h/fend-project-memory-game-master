@@ -194,3 +194,62 @@ h1 {
     font-weight: bold;
     cursor: pointer;
 }
+
+
+/*
+ * media queries
+ */
+/* for medium screens */
+@media screen and (max-width: 690px) {
+
+   .deck {
+     width: 473px;
+     min-height: 486px;
+     padding: 18px;
+   }
+
+   .deck .card {
+       height: 100px;
+       width: 100px;
+   }
+
+   .score-panel {
+       width: 365px;
+   }
+
+ }
+
+ /* for small screens */
+@media screen and (max-width: 500px) {
+
+   .deck {
+       width: 390px;
+       min-height: 410px;
+       padding: 12px;
+   }
+
+   .deck .card {
+       height: 80px;
+       width: 80px;
+   }
+
+   .score-panel {
+       width: 273px;
+   }
+
+ }
+
+/* for small screens */
+@media screen and (max-width: 420px) {
+
+   .deck {
+       width: 312px;
+       min-height: 318px;
+       padding: 12px;
+   }
+
+   .deck .card {
+       height: 66px;
+       width: 66px;
+   }
+}
