@@ -260,6 +260,12 @@ cardsDeck.addEventListener('click', openCard);
 restartBtn.addEventListener('click', restartGame);
 
 
+// shuffle the cards every time the browser reloads
+window.addEventListener("load", function() {
+    shuffle(cards);
+  });
+
+
 // add click event to restartBtn to restart game
 // and begin a new game
 replayBtn.addEventListener('click', function() {
