@@ -4,6 +4,9 @@
 
 * [Instructions](#instructions)
 * [Contributing](#contributing)
+* [Libraries](#libraries)
+* [Code Sources](#CodeSources)
+* [Font icon](#FontIcon)
 
 ## Instructions
 
@@ -18,3 +21,19 @@ For specific, detailed instructions, look at the project instructions in the [Ud
 This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Libraries
+
+I use easytimer library from https://albert-gonzalez.github.io/easytimer.js/
+
+shaking library from https://elrumordelaluz.github.io/csshake/
+
+jquery from https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js
+
+## Code sources
+
+  w3schools.com
+	stackoverflow
+
+## Font icon
+  fontawesome.com
