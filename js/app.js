@@ -7,7 +7,7 @@ console.log(cardsDeck);
 
 const cards = document.querySelectorAll('.card');
 console.log(cards);
-console.log(cards[0].lastElementChild.firstElementChild.className);
+console.log(cards[0].firstElementChild.className);
 
 const restartBtn = document.querySelector('.restart');
 const replayBtn = document.querySelector('.replayBtn');
@@ -52,9 +52,9 @@ function shuffle(array) {
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
-        temporaryValue = array[currentIndex].lastElementChild.firstElementChild.className;
-        array[currentIndex].lastElementChild.firstElementChild.className = array[randomIndex].lastElementChild.firstElementChild.className;
-        array[randomIndex].lastElementChild.firstElementChild.className = temporaryValue;
+        temporaryValue = array[currentIndex].firstElementChild.className;
+        array[currentIndex].firstElementChild.className = array[randomIndex].firstElementChild.className;
+        array[randomIndex].firstElementChild.className = temporaryValue;
     }
 
     return array;
@@ -80,8 +80,9 @@ function openCard(evt) {
     // check if card is opended to fix second click problem
     //prevent opened card and match card to be clicked second time
     if (!(evt.target.classList.contains('open'))  && !(evt.target.classList.contains('match'))) {
-
       evt.target.classList.add('open', 'show');
+
+
       const card = evt.target;
       addOpenCards(card);
     }
@@ -109,7 +110,7 @@ function openCard(evt) {
 // function to add open card to list
 function addOpenCards(card) {
   // get and save 2 card values to compare them
-  const cardValue = card.lastElementChild.firstElementChild.className;
+  const cardValue = card.firstElementChild.className;
 
   // check if no of cards in the list and push cards if openCardList.length <= 1
   if (openCardList.length <= 1) {
@@ -151,9 +152,9 @@ function addOpenCards(card) {
 
 // function cardMatched add class match to 2 matched cards
 function cardsMatched(card1, card2) {
-  card1.classList.remove('open', 'show');
+  card1.classList.remove('open', 'show', 'flip');
   card1.classList.add('match');
-  card2.classList.remove('open', 'show');
+  card2.classList.remove('open', 'show', 'flip');
   card2.classList.add('match');
 
   // adding shaking effect

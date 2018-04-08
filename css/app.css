@@ -197,6 +197,19 @@ h1 {
 
 
 /*
+ * add flipping styles
+ */
+.flip {
+    transition: all .2s ease;
+    transform-style: preserve-3d;
+    -webkit-transform: rotateY( -180deg );
+    -moz-transform: rotateY( -180deg );
+    -o-transform: rotateY( -180deg );
+    transform: rotateY( -180deg );
+}
+
+
+/*
  * media queries
  */
 /* for medium screens */
