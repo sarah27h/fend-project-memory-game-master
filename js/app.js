@@ -216,10 +216,13 @@ function countPlayerMoves() {
 
 // function to update star rating based on player Moves
 function updateStar() {
-  if ((moveConuter.innerHTML) === '15') {
+  console.log('...................inside updateStar');
+  if (Number(moveConuter.innerHTML) >= 15) {
     starNum = 2;
+    console.log(starRating.children[0]);
     starRating.children[0].style.cssText = 'visibility: hidden';
-  } else if ((moveConuter.innerHTML) === '30') {
+
+  } else if (Number(moveConuter.innerHTML) >= 30) {
     starNum = 1;
     starRating.children[1].style.cssText = 'visibility: hidden';
   }
@@ -238,6 +241,9 @@ function winModel() {
   // get player data to display on win winModel
   const finalMoves = document.querySelector('.final-moves');
   finalMoves.innerHTML = moveConuter.innerHTML;
+
+  updateStar();
+  console.log(moveConuter.innerHTML + 'test updateStar for model');
   const finalStars = document.querySelector('.final-stars');
   finalStars.innerHTML =  starNum.toString();
 }
@@ -266,6 +272,7 @@ function restartGame (){
   for (let i = 0; i < starchildren.length; i++) {
     starchildren[i].style.cssText = 'visibility: visible';
   }
+  starNum = 3;
 
   //timer
   timer.reset();
