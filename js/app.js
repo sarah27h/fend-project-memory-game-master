@@ -48,12 +48,6 @@ let starNum = 3;
 const restartBtn = document.querySelector('.restart'),
       replayBtn = document.querySelector('.replayBtn');
 
-
-/*
- *
- * functions
- *
- */
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -61,6 +55,17 @@ const restartBtn = document.querySelector('.restart'),
  *   - add each card's HTML to the page
  */
 
+
+/*
+ *
+ * functions
+ *
+ */
+ /**
+* @description Shuffle an array
+* @param {array} array - list of card symbols
+* @returns {array} array
+*/
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -88,7 +93,10 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-//function to open card and show symbol
+ /**
+ * @description open card and show symbol
+ * @param  {object} evt - click event
+ */
 function openCard(evt) {
   // check if evt.target is li
   if (evt.target.nodeName.toLowerCase() === 'li') {
@@ -122,7 +130,10 @@ function openCard(evt) {
 }
 
 
-// function to add open card to list
+/**
+* @description add open card to list
+* @param {object} card - clicked card
+*/
 function addOpenCards(card) {
   // get and save 2 card values to compare them
   const cardValue = card.firstElementChild.className;
@@ -164,7 +175,12 @@ function addOpenCards(card) {
   }
 }
 
-// function cardMatched add class match to 2 matched cards
+
+/**
+* @description add class match to 2 matched cards
+* @param {object} card1 - opened card
+* @param {object} card2 - opened card
+*/
 function cardsMatched(card1, card2) {
   card1.classList.remove('open', 'show', 'flip');
   card1.classList.add('match');
@@ -177,7 +193,11 @@ function cardsMatched(card1, card2) {
 }
 
 
-// function cardsNotMatched hide card symbol and remove 2 cards from openCardList
+/**
+* @description hide card symbol and remove 2 cards from openCardList
+* @param {object} card1 - opened card
+* @param {object} card2 - opened card
+*/
 function cardsNotMatched(card1, card2) {
   console.log("inside NotMatched fun")
 
@@ -205,7 +225,9 @@ function cardsNotMatched(card1, card2) {
 }
 
 
-// function to to count player moves
+/**
+* @description count player moves
+*/
 function countPlayerMoves() {
   conuter = Number(moveConuter.innerHTML);
   conuter ++;
@@ -214,7 +236,9 @@ function countPlayerMoves() {
 }
 
 
-// function to update star rating based on player Moves
+/**
+* @description update star rating based on player Moves
+*/
 function updateStar() {
   console.log('...................inside updateStar');
   if (Number(moveConuter.innerHTML) >= 15) {
@@ -229,7 +253,9 @@ function updateStar() {
 }
 
 
-// function to show Congratulations Popup model when a user wins the game
+/**
+* @description show Congratulations Popup model when a user wins the game
+*/
 function winModel() {
   console.log('congratulate  you win :)');
   // When the user clicks the button, open the modal
@@ -249,7 +275,9 @@ function winModel() {
 }
 
 
-// function restartGame() to restart the game
+/**
+* @description to restart the game
+*/
 function restartGame (){
   // reset game board
   //(flip cards down,
@@ -267,21 +295,21 @@ function restartGame (){
   moveConuter.innerHTML = '0';
   console.log("I press restartBtn", starRating.children);
 
-  //star rating
+  //reset star rating
   const starchildren = starRating.children;
   for (let i = 0; i < starchildren.length; i++) {
     starchildren[i].style.cssText = 'visibility: visible';
   }
   starNum = 3;
 
-  //timer
+  //reset timer
   timer.reset();
   timer.stop();
   document.querySelector('.minutes').innerHTML = '0';
   document.querySelector('.seconds').innerHTML = '0';
   console.log('seconds ', document.querySelector('.seconds').innerHTML);
 
-  //match
+  //clear match
   clickCount = 0;
   match = 0;
 }
