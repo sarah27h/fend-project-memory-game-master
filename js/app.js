@@ -145,36 +145,36 @@ function addOpenCards(card) {
     console.log(openCardList.length + ' inside addCard function');
 
     // check if there are 2 cards in openCardList and compare their values
-    if (openCardList.length === 2 && (openCardValue[0] === openCardValue[1])) {
+    if (openCardList.length === 2) {
       console.log(openCardValue[0] + " " + openCardValue[1] + '.....' + openCardList[0]);
-      cardsMatched(openCardList[0], openCardList[1]);
       countPlayerMoves();
       updateStar();
-      // to keep track of matched cards
-      match ++;
-      if (match === 8) {
-        winModel();
-      }
-      console.log(conuter);
+      //compare 2 cards values equal
+      if (openCardValue[0] === openCardValue[1]) {
+        cardsMatched(openCardList[0], openCardList[1]);
+        // to keep track of matched cards
+        match ++;
+        if (match === 8) {
+          winModel();
+        }
+        console.log(conuter);
 
-      // remove cards and its values from openCardList
-      openCardList.length = 0;
-      openCardValue.length = 0;
-
-    } else if (openCardList.length === 2 && (openCardValue[0] !== openCardValue[1])) {
+        // remove cards and its values from openCardList
+        openCardList.length = 0;
+        openCardValue.length = 0;
+      //compare 2 cards values not equal
+      } else {
       console.log(openCardValue[0] + " " + openCardValue[1]);
       cardsNotMatched(openCardList[0], openCardList[1]);
-      countPlayerMoves();
-      updateStar();
       console.log(conuter);
 
       // remove cards and its values from openCardList
       openCardList.length = 0;
       openCardValue.length = 0;
+      }
     }
   }
 }
-
 
 /**
 * @description add class match to 2 matched cards
